@@ -7,8 +7,9 @@ public class Pet {
 
     private String name;
     private String lastName;
+    private String type;
     private Sex sex;
-    private Integer age;
+    private Double age;
     private Double weight;
     private String race;
     private Address address;
@@ -16,8 +17,9 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String name, String lastName, String sex, Integer age, Double weight, String race, Address address) {
+    public Pet(String name, String lastName, String type, String sex, Double age, Double weight, String race, Address address) {
         this.name = name;
+        this.type = type;
         this.lastName = lastName;
         this.sex = Sex.valueOf(sex);
         this.age = age;
@@ -32,6 +34,18 @@ public class Pet {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     public String getLastName() {
@@ -50,11 +64,11 @@ public class Pet {
         this.sex = Sex.valueOf(sex);
     }
 
-    public Integer getAge() {
+    public Double getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(Double age) {
         this.age = age;
     }
 

@@ -1,9 +1,13 @@
 package util;
 
+import service.PetService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
+
+    PetService petService = new PetService();
 
     public void initialMenu() {
         Scanner sc = new Scanner(System.in);
@@ -19,9 +23,14 @@ public class Menu {
             do {
                 System.out.println(sb);
                 input = sc.nextInt();
+                switch (input) {
+                    case 1:
+                        petService.registration();
+                }
             } while (input != 6);
         } catch(InputMismatchException e) {
         System.out.println("Apenas números inteiros são válidos");
     }
+        sc.close();
     }
 }
