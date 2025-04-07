@@ -1,26 +1,29 @@
 package entity;
 
+import petEnum.Sex;
+import util.Address;
+
 public class Pet {
 
     private String name;
     private String lastName;
-    private String sex;
+    private Sex sex;
     private Integer age;
     private Double weight;
     private String race;
-    private String Address;
+    private Address address;
 
     public Pet() {
     }
 
-    public Pet(String name, String lastName, String sex, Integer age, Double weight, String race, String address) {
+    public Pet(String name, String lastName, String sex, Integer age, Double weight, String race, Address address) {
         this.name = name;
         this.lastName = lastName;
-        this.sex = sex;
+        this.sex = Sex.valueOf(sex);
         this.age = age;
         this.weight = weight;
         this.race = race;
-        Address = address;
+        this.address = address;
     }
 
     public String getName() {
@@ -39,12 +42,12 @@ public class Pet {
         this.lastName = lastName;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        this.sex = Sex.valueOf(sex);
     }
 
     public Integer getAge() {
@@ -71,11 +74,11 @@ public class Pet {
         this.race = race;
     }
 
-    public String getAddress() {
-        return Address;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
