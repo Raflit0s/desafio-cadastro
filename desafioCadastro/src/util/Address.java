@@ -2,20 +2,20 @@ package util;
 
 public class Address {
 
-    private Integer houseNumber;
+    private Object houseNumber;
     private String city;
     private String street;
 
     public Address() {
     }
 
-    public Address(Integer houseNumber, String city, String street) {
+    public Address(Object houseNumber, String city, String street) {
         this.houseNumber = houseNumber;
         this.city = city;
         this.street = street;
     }
 
-    public Integer getHouseNumber() {
+    public Object getHouseNumber() {
         return houseNumber;
     }
 
