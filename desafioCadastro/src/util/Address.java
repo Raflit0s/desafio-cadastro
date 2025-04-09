@@ -29,10 +29,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "houseNumber=" + houseNumber +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                '}';
+        return getStreet() + ", " + getHouseNumber() + ", " + getCity();
     }
 }

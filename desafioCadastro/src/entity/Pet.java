@@ -95,11 +95,11 @@ public class Pet {
     }
 
     public void validateName(String name, String lastName) {
-        StringBuilder sb = new StringBuilder(name).append(lastName);
+        StringBuilder nomeCompleto = new StringBuilder(name).append(lastName);
 
         if(name.isEmpty() || lastName.isEmpty()) {
             throw new RuntimeException("Nome e sobrenome são necessários.");
-        }else if(!sb.toString().matches("[a-zA-Z ]+")) {
+        }else if(!nomeCompleto.toString().matches("[a-zA-Z ]+")) {
             throw new RuntimeException("Nome completo não pode conter caracteres especiais.");
         }
 
@@ -130,15 +130,15 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", type='" + type + '\'' +
-                ", sex=" + sex +
-                ", age=" + age +
-                ", weight=" + weight +
-                ", race='" + race + '\'' +
-                ", address=" + address +
-                '}';
+        String ageStr = (age instanceof Double) ? age + " anos\n" : age.toString() + "\n";
+        String weightStr = (weight instanceof Double) ? weight + "kg\n" : weight.toString()+ "\n";
+
+        return "1 - " + name + " " + lastName + "\n"
+                + "2 - " + type + "\n"
+                + "3 - " + sex + "\n"
+                + "4 - " + address + "\n"
+                + "5 - " + ageStr
+                + "6 - " + weightStr
+                + "7 - " + race;
     }
 }

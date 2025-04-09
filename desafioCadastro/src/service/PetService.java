@@ -3,6 +3,14 @@ package service;
 import entity.Pet;
 import util.Address;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class PetService {
@@ -15,7 +23,7 @@ public class PetService {
         System.out.print("Qual o nome do seu pet?");
         String name = sc.nextLine();
 
-        System.out.println("Qual o sobrenome do seu pet?");
+        System.out.print("Qual o sobrenome do seu pet?");
         String lastName = sc.nextLine();
 
         pet.validateName(name, lastName);
@@ -65,7 +73,21 @@ public class PetService {
         String race = (raceInput.matches("")) ? Pet.NOT_INFORMED : raceInput;
 
         pet = new Pet(name, lastName, type.toUpperCase(), sex.toUpperCase(), age, weight, race, address);
-
-        System.out.println(pet);
+        saveInfile(pet);
     }
-}
+
+    public void saveInfile(Pet pet) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMdd HHmm");
+            String dateTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).format(fmt);
+            StringBuilder nomeCompleto = new StringBuilder(pet.getName()).append(pet.getLastName());
+            File file = new File("C:\\Users\\Rafael\\IdeaProjects\\desafioCadastro\\desafioCadastro\\petsCadastrados\\"
+                    + dateTime.replace(" ", "T") + "-" + nomeCompleto.toString().toUpperCase() + ".txt");
+
+            try(BufferedWriter br = new BufferedWriter(new FileWriter(file))){
+                br.write(pet.toString());
+                System.out.println("Arquivo criado com sucesso!");
+            } catch (IOException e) {
+                System.out.println("Não foi possível criar o arquivo");
+            }
+        }
+    }
