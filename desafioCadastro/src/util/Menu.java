@@ -26,6 +26,10 @@ public class Menu {
                 switch (input) {
                     case 1:
                         petService.registration();
+                        break;
+                    case 5:
+                        petService.findPet();
+                        break;
                 }
             } while (input != 6);
         } catch(InputMismatchException e) {

@@ -2,7 +2,6 @@ package entity;
 
 import petEnum.Sex;
 import petEnum.Type;
-import util.Address;
 
 public class Pet {
 
