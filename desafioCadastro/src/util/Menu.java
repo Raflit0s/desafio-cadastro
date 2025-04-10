@@ -27,6 +27,9 @@ public class Menu {
                     case 1:
                         petService.registration();
                         break;
+                    case 2:
+                        petService.updatePet();
+                        break;
                     case 5:
                         petService.findPet();
                         break;

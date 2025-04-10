@@ -13,12 +13,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class PetService {
 
-    private Pet pet = new Pet();
-    private List<Pet> petList = new ArrayList<>();
+    Pet pet = new Pet();
+    List<Pet> petList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+    int index = 0;
 
     public void registration() {
 
@@ -94,7 +96,7 @@ public class PetService {
             }
         }
 
-    public List<Pet> findPet() {
+    public void findPet() {
 
         System.out.print("Qual tipo do seu animal? (Cachorro/Gato) ");
         String type = sc.nextLine();
@@ -105,7 +107,7 @@ public class PetService {
         map.put(3, pet -> pet.getAge().toString());
         map.put(4, pet -> pet.getWeight().toString());
         map.put(5, Pet::getRace);
-        map.put(6, pet -> pet.getAddress().toString());
+        map.put(6, pet -> pet.getAddress().getCity() + pet.getAddress().getStreet() + pet.getAddress().getHouseNumber());
 
         System.out.println();
         System.out.println("Escolha um ou dois critérios de busca. ");
@@ -127,12 +129,12 @@ public class PetService {
 
         petList = petList.stream().filter(x -> x.getType().toString().equals(type.toUpperCase())).filter(x -> {
             String pet = criterion.apply(x);
-            if(criterionInput.equals(1)) {
+            if(criterionInput.equals(1) || criterionInput.equals(6)) {
                 return pet.toLowerCase().contains(value.toLowerCase());
             } else {
                 return pet.equalsIgnoreCase(value);
             }
-        }).toList();
+        }).collect(Collectors.toList());
 
         System.out.print("Escolha um segundo critério. (deixar em branco caso não precise.) ");
         String criterionInput2 = sc.nextLine().toLowerCase();
@@ -145,22 +147,88 @@ public class PetService {
 
             petList = petList.stream().filter(x -> {
                 String pet = criterion2.apply(x);
-                if(criterionInput2.equals("1")) {
+                if(criterionInput2.equals("1") || criterionInput2.equals("6")) {
                     return pet.toLowerCase().contains(value.toLowerCase());
                 } else {
                     return pet.equalsIgnoreCase(value2);
                 }
-            }).toList();
+            }).collect(Collectors.toList());
         }
 
+        System.out.println();
         for(Pet x : petList) {
-            int i = 0;
-            i++;
-            System.out.println(i + ". " + x.getName() + " " + x.getLastName() + " - " + x.getType() + " - "
+            index = petList.indexOf(x);
+            System.out.println(index + ". " + x.getName() + " " + x.getLastName() + " - " + x.getType() + " - "
                     + x.getSex() + " - " + x.getAddress() + " - " + x.getAge() +
                     " anos - " + x.getWeight() + " - " + x.getRace());
         }
+        System.out.println();
 
-        return petList;
+        }
+
+        public void updatePet() {
+
+        int searchNumber;
+        do {
+            System.out.println("Busque o pet que deseja alterar:");
+            findPet();
+            System.out.println();
+            System.out.print("Digite o número do pet que deseja modificar: ");
+            searchNumber = sc.nextInt();
+            Pet position = petList.get(searchNumber);
+
+            if(position != null) {
+                sc.nextLine();
+                System.out.print("Insira o novo nome: ");
+                String name = sc.nextLine();
+                if(!name.trim().isEmpty()) {
+                    position.setName(name);
+                }
+                System.out.print("Insira novo sobrenome: ");
+                String lastName = sc.nextLine();
+                if(!lastName.trim().isEmpty()) {
+                    position.setLastName(lastName);
+                }
+
+                System.out.print("Insira nova idade: ");
+                String ageInput = sc.nextLine();
+                if(!ageInput.trim().isEmpty()) {
+                    Double age = pet.commaToPeriod(ageInput);
+                    pet.validateAge(age);
+                    position.setAge(age);
+                }
+
+                System.out.print("Insira novo peso: ");
+                String weightInput = sc.nextLine();
+                if(!weightInput.trim().isEmpty()) {
+                    Double weight = pet.commaToPeriod(weightInput);
+                    pet.validateWeight(weight);
+                    position.setWeight(weight);
+                }
+
+                System.out.print("Insira nova raça: ");
+                String race = sc.nextLine();
+                if(!race.trim().isEmpty()) {
+                    position.setRace(race);
+                }
+
+                System.out.println("Insira novo endereço:");
+                System.out.print("Número da casa: ");
+                String houseNumber = sc.nextLine();
+                if(!houseNumber.trim().isEmpty()) {
+                    position.setAddress(new Address(Integer.parseInt(houseNumber)));
+                }
+                System.out.print("Cidade: ");
+                String city = sc.nextLine();
+                if(!city.trim().isEmpty()) {
+                    position.setAddress(new Address(city));
+                }
+                System.out.print("Rua: ");
+                String street = sc.nextLine();
+                if(!street.trim().isEmpty()) {
+                    position.setAddress(new Address(street));
+                }
+            }
+        }while(petList.get(searchNumber) == null);
         }
 }

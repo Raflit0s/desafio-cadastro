@@ -65,7 +65,7 @@ public class Pet {
         return age;
     }
 
-    public void setAge(Double age) {
+    public void setAge(Object age) {
         this.age = age;
     }
 
@@ -73,7 +73,7 @@ public class Pet {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(Object weight) {
         this.weight = weight;
     }
 

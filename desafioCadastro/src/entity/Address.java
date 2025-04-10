@@ -9,6 +9,18 @@ public class Address {
     public Address() {
     }
 
+    public Address(Object houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public Address(String city, boolean bool) {
+        this.city = city;
+    }
+
+    public Address(String street) {
+        this.street = street;
+    }
+
     public Address(Object houseNumber, String city, String street) {
         this.houseNumber = houseNumber;
         this.city = city;
