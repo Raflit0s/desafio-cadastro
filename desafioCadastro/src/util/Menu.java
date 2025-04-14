@@ -25,13 +25,16 @@ public class Menu {
                 input = sc.nextInt();
                 switch (input) {
                     case 1:
-                        petService.registration();
+                        petService.petRegister();
                         break;
                     case 2:
                         petService.updatePet();
                         break;
-                    case 5:
+                    case 3:
                         petService.findPet();
+                        break;
+                    case 4:
+                        petService.deletePet();
                         break;
                 }
             } while (input != 6);

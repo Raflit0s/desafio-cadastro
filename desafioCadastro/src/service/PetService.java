@@ -22,7 +22,7 @@ public class PetService {
     Scanner sc = new Scanner(System.in);
     int index = 0;
 
-    public void registration() {
+    public void petRegister() {
 
         System.out.print("Qual o nome do seu pet?");
         String name = sc.nextLine();

@@ -1,15 +1,15 @@
 package entity;
 
-import petEnum.Sex;
-import petEnum.Type;
+import petEnum.PetSex;
+import petEnum.PetType;
 
 public class Pet {
 
     public static final String NOT_INFORMED = "NÃO INFORMADO";
     private String name;
     private String lastName;
-    private Type type;
-    private Sex sex;
+    private PetType type;
+    private PetSex sex;
     private Object age;
     private Object weight;
     private String race;
@@ -20,9 +20,9 @@ public class Pet {
 
     public Pet(String name, String lastName, String type, String sex, Object age, Object weight, String race, Address address) {
         this.name = name;
-        this.type = Type.valueOf(type);
+        this.type = PetType.valueOf(type);
         this.lastName = lastName;
-        this.sex = Sex.valueOf(sex);
+        this.sex = PetSex.valueOf(sex);
         this.age = age;
         this.weight = weight;
         this.race = race;
@@ -37,12 +37,12 @@ public class Pet {
         this.name = name;
     }
 
-    public Type getType() {
+    public PetType getType() {
         return type;
     }
 
     public void setType(String type) {
-        this.type = Type.valueOf(type);
+        this.type = PetType.valueOf(type);
     }
 
     public String getLastName() {
@@ -53,12 +53,12 @@ public class Pet {
         this.lastName = lastName;
     }
 
-    public Sex getSex() {
+    public PetSex getSex() {
         return sex;
     }
 
     public void setSex(String sex) {
-        this.sex = Sex.valueOf(sex);
+        this.sex = PetSex.valueOf(sex);
     }
 
     public Object getAge() {
