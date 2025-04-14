@@ -173,11 +173,12 @@ public class PetService {
             System.out.println("Busque o pet que deseja alterar:");
             findPet();
             System.out.println();
+            do{
             System.out.print("Digite o número do pet que deseja modificar: ");
             searchNumber = sc.nextInt();
-            Pet position = petList.get(searchNumber);
 
-            if(position != null) {
+            if(searchNumber <= petList.size() - 1) {
+                position = petList.get(searchNumber);
                 sc.nextLine();
                 System.out.print("Insira o novo nome: ");
                 String name = sc.nextLine();
@@ -228,6 +229,9 @@ public class PetService {
                 if(!street.trim().isEmpty()) {
                     position.setAddress(new Address(street));
                 }
+            } else {
+                System.out.println("Número inválido, digite um número de busca válido.");
+            }
             }
         }while(petList.get(searchNumber) == null);
         }
