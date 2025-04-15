@@ -166,10 +166,10 @@ public class PetService {
 
         }
 
-        public void updatePet() {
-
+    public void updatePet() {
         int searchNumber;
-        do {
+        Pet position;
+
             System.out.println("Busque o pet que deseja alterar:");
             findPet();
             System.out.println();
@@ -233,6 +233,28 @@ public class PetService {
                 System.out.println("Número inválido, digite um número de busca válido.");
             }
             }
-        }while(petList.get(searchNumber) == null);
-        }
+            while(searchNumber > petList.size() - 1);
+
+    }
+
+    public void deletePet() {
+        int searchNumber;
+        Pet position;
+
+        System.out.println("Busque o pet que deseja deletar:");
+        findPet();
+        System.out.println();
+
+        do {
+            System.out.print("Digite o número do pet que deseja deletar: ");
+            searchNumber = sc.nextInt();
+
+            if(searchNumber <= petList.size() - 1) {
+                petList.remove(searchNumber);
+               System.out.println("Dados do pet removidos com sucesso!");
+            } else {
+                System.out.println("Número inválido, digite novamente");
+            }
+        } while(searchNumber > petList.size() - 1);
+    }
 }
