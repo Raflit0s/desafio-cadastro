@@ -13,10 +13,9 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder("1. Cadastrar um novo pet\n")
                 .append("2. Alterar os dados do pet cadastrado\n")
-                .append("3. Deletar um pet cadastrado\n")
-                .append("4. Listar todos os pets cadastrados\n")
-                .append("5. Listar pets por algum critério (idade, nome, raça)\n")
-                .append("6. Sair");
+                .append("3. Listar pets por algum critério (idade, nome, raça)\n")
+                .append("4. Deletar um pet cadastrado\n")
+                .append("5. Sair");
 
         int input = 0;
         try {
@@ -36,8 +35,11 @@ public class Menu {
                     case 4:
                         petService.deletePet();
                         break;
+                    case 5:
+                        System.out.println("Programa encerrado.");
+                        break;
                 }
-            } while (input != 6);
+            } while (input != 5);
         } catch(InputMismatchException e) {
         System.out.println("Apenas números inteiros são válidos");
     }

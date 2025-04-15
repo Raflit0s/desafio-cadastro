@@ -145,7 +145,7 @@ public class PetService {
 
         //verifica se o usuário forneceu um segundo critério, se sim, filtra com base no segundo critério
         String value2;
-        if(!criterionInput2.isEmpty()) {
+        if(!criterionInput2.trim().isEmpty()) {
             Function<Pet, String> criterion2 = map.get(Integer.parseInt(criterionInput2));
             System.out.print("Qual valor buscar? ");
             value2 = sc.nextLine().toLowerCase();

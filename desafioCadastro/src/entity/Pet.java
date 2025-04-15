@@ -97,7 +97,7 @@ public class Pet {
     public void validateName(String name, String lastName) {
         StringBuilder nomeCompleto = new StringBuilder(name).append(lastName);
 
-        if(name.isEmpty() || lastName.isEmpty()) {
+        if(name.trim().isEmpty() || lastName.trim().isEmpty()) {
             throw new RuntimeException("Nome e sobrenome são necessários.");
         }else if(!nomeCompleto.toString().matches("[a-zA-Z ]+")) {
             throw new RuntimeException("Nome completo não pode conter caracteres especiais.");
