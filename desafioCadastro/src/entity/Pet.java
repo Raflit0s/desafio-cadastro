@@ -93,6 +93,7 @@ public class Pet {
         this.address = address;
     }
 
+    //se nome e sobrenome não forem fornecidos ou possuírem caracteres especiais, lança uma exceção.
     public void validateName(String name, String lastName) {
         StringBuilder nomeCompleto = new StringBuilder(name).append(lastName);
 
@@ -129,6 +130,8 @@ public class Pet {
 
     @Override
     public String toString() {
+
+        //verifica se os atributos são instância de double, se forem, adiciona valor + anos ou kg, se não, imprime apenas "NÃO INFORMADO".
         String ageStr = (age instanceof Double) ? age + " anos\n" : age.toString() + "\n";
         String weightStr = (weight instanceof Double) ? weight + "kg\n" : weight.toString()+ "\n";
 

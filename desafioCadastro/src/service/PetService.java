@@ -40,7 +40,8 @@ public class PetService {
 
         System.out.print("Número da casa: ");
         String houseNumberInput = sc.nextLine();
-        Object houseNumber = ((houseNumberInput).matches("")) ? Pet.NOT_INFORMED : Integer.parseInt(houseNumberInput);
+        //verifica se o usuário forneceu um valor, caso não, substitui o espaço vazio por "NÃO INFORMADO".
+        Object houseNumber = (houseNumberInput.trim().isEmpty()) ? Pet.NOT_INFORMED : Integer.parseInt(houseNumberInput);
 
         System.out.print("Cidade: ");
         String city = sc.nextLine();
@@ -54,7 +55,7 @@ public class PetService {
         String ageInput = sc.nextLine();
 
         Object age = null;
-        if(ageInput.matches("")) {
+        if(ageInput.trim().isEmpty()) {
             age = Pet.NOT_INFORMED;
         } else {
             age = pet.commaToPeriod(ageInput);
@@ -65,7 +66,7 @@ public class PetService {
         String weightInput = sc.nextLine();
 
         Object weight = null;
-        if(weightInput.matches("")) {
+        if(weightInput.trim().isEmpty()) {
             weight = Pet.NOT_INFORMED;
         } else {
             weight = pet.commaToPeriod(weightInput);
@@ -121,12 +122,15 @@ public class PetService {
                 "6 - Endereço");
 
         Integer criterionInput = sc.nextInt();
+
+        //pega o input do usuário para conseguir o valor (critério) correspondente no map
         Function<Pet, String> criterion = map.get(criterionInput);
 
         sc.nextLine();
         System.out.print("Qual valor buscar? ");
         String value = sc.nextLine();
 
+        //filtra a lista de acordo com o primeiro critério
         petList = petList.stream().filter(x -> x.getType().toString().equals(type.toUpperCase())).filter(x -> {
             String pet = criterion.apply(x);
             if(criterionInput.equals(1) || criterionInput.equals(6)) {
@@ -139,6 +143,7 @@ public class PetService {
         System.out.print("Escolha um segundo critério. (deixar em branco caso não precise.) ");
         String criterionInput2 = sc.nextLine().toLowerCase();
 
+        //verifica se o usuário forneceu um segundo critério, se sim, filtra com base no segundo critério
         String value2;
         if(!criterionInput2.isEmpty()) {
             Function<Pet, String> criterion2 = map.get(Integer.parseInt(criterionInput2));
@@ -177,6 +182,7 @@ public class PetService {
             System.out.print("Digite o número do pet que deseja modificar: ");
             searchNumber = sc.nextInt();
 
+            //checa se searchNumber existe como index em petList, se não existir, pede pra digitar o número novamente.
             if(searchNumber <= petList.size() - 1) {
                 position = petList.get(searchNumber);
                 sc.nextLine();
